@@ -1,5 +1,9 @@
 import gradio as gr
 import skops.io as sio
+from skops.io import dump, load, get_untrusted_types
+
+unknown_types = get_untrusted_types(file="./Model/drug_pipeline.skops")
+print(unknown_types)
 
 pipe = sio.load("./Model/drug_pipeline.skops", trusted=True)
 
