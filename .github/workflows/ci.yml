@@ -5,16 +5,14 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-
+  
 permissions: write-all
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: iterative/setup-cml@v2
-        with:
-          node-version: '20.x'
+      - uses: actions/checkout@v4
+      - uses: iterative/setup-cml@v2.0.1
       - name: Install Packages
         run: make install
       - name: Format
@@ -30,3 +28,4 @@ jobs:
           NAME: ${{ secrets.USER_NAME }}
           EMAIL: ${{ secrets.USER_EMAIL }}
         run: make update-branch USER_NAME=$NAME USER_EMAIL=$EMAIL
+         
